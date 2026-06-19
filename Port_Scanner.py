@@ -4,7 +4,14 @@ import time
 import argparse
 import json
 import sys
+import logging
 from functools import lru_cache
+
+logging.basicConfig(
+    filename='scanner_debug.log', 
+    level=logging.DEBUG, 
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 
 @lru_cache(maxsize=None)
 def get_service_name(port):
@@ -31,13 +38,14 @@ def scan_port(ip, port, timeout=0.5):
                     raw_data = sock.recv(1024)
                     banner = raw_data.decode('utf-8', errors='ignore').strip()[:60]
                     banner = banner.replace('\r', '').replace('\n', ' ')
-                except Exception:
-                    pass
+                except Exception as e:
+                    logging.debug(f"Banner grab failed for port {port}: {e}")
                     
                 return (port, True, service, banner)
                 
             return (port, False, "", "")
-    except Exception:
+    except Exception as e:
+        logging.debug(f"Scan failed for port {port}: {e}")
         return (port, False, "", "")
 
 def main():
@@ -48,6 +56,7 @@ def main():
     parser.add_argument("-w", "--workers", type=int, default=100)
     parser.add_argument("-t", "--timeout", type=float, default=0.5)
     parser.add_argument("-o", "--output", type=str)
+    parser.add_argument("-b", "--batch-size", type=int, default=2048)
     
     args = parser.parse_args()
 
@@ -57,46 +66,64 @@ def main():
 
     try:
         target_ip = socket.gethostbyname(args.target)
-    except socket.gaierror:
+    except socket.gaierror as e:
         print(f"[-] Error: Could not resolve {args.target}")
+        logging.debug(f"Resolution error for {args.target}: {e}")
         sys.exit(1)
 
     max_workers = min(args.workers, 1000)
     total_ports = args.end - args.start + 1
 
     print("-" * 70)
-    print(f"[*] Target: {target_ip} | Ports: {args.start}-{args.end} | Threads: {max_workers}")
+    print(f"[*] Target: {target_ip} | Ports: {args.start}-{args.end}")
+    print(f"[*] Threads: {max_workers} | Batch Size: {args.batch_size}")
+    print(f"[*] Debug logs saved to: scanner_debug.log")
     print("-" * 70)
 
     open_ports = []
     start_time = time.time()
     scanned_count = 0
+    last_percent = -1
 
     try:
         with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
-            futures = {
-                executor.submit(scan_port, target_ip, port, args.timeout): port 
-                for port in range(args.start, args.end + 1)
-            }
-            
-            for future in concurrent.futures.as_completed(futures):
-                scanned_count += 1
-                progress_percent = (scanned_count / total_ports) * 100
-                sys.stdout.write(f"\r[*] Progress: {scanned_count}/{total_ports} ports scanned ({progress_percent:.1f}%)")
-                sys.stdout.flush()
+            for batch_start in range(args.start, args.end + 1, args.batch_size):
+                batch_end = min(batch_start + args.batch_size, args.end + 1)
                 
-                port, is_open, service, banner = future.result()
-                if is_open:
-                    open_ports.append({
-                        "port": port,
-                        "service": service,
-                        "banner": banner
-                    })
+                futures = {
+                    executor.submit(scan_port, target_ip, port, args.timeout): port 
+                    for port in range(batch_start, batch_end)
+                }
+                
+                for future in concurrent.futures.as_completed(futures):
+                    scanned_count += 1
+                    current_percent = int((scanned_count / total_ports) * 100)
+                    
+                    if current_percent > last_percent:
+                        sys.stdout.write(f"\r[*] Progress: {scanned_count}/{total_ports} ports scanned ({current_percent}%)")
+                        sys.stdout.flush()
+                        last_percent = current_percent
+                    
+                    try:
+                        port, is_open, service, banner = future.result()
+                        if is_open:
+                            open_ports.append({
+                                "port": port,
+                                "service": service,
+                                "banner": banner
+                            })
+                    except Exception as e:
+                        logging.debug(f"Future result error: {e}")
+                        continue
+
     except KeyboardInterrupt:
         print("\n\n[!] Scan interrupted by user (Ctrl+C). Exiting gracefully...")
         sys.exit(0)
 
     end_time = time.time()
+    
+    sys.stdout.write(f"\r[*] Progress: {total_ports}/{total_ports} ports scanned (100%)")
+    sys.stdout.flush()
     
     print("\n\n[+] Results:")
     if not open_ports:
@@ -115,9 +142,11 @@ def main():
             print(f"\n[*] Results saved to {args.output}")
         except Exception as e:
             print(f"\n[-] Error saving JSON: {e}")
+            logging.debug(f"JSON save error: {e}")
 
     print("-" * 70)
     print(f"[*] Scan completed in {end_time - start_time:.2f} seconds.")
 
 if __name__ == "__main__":
     main()
+    
