@@ -4,11 +4,17 @@
 
 Options
 -s, --start: Start port (default: 1)
+
 -e, --end: End port (default: 1024)
+
 -w, --workers: Maximum concurrent threads (default: 100, max: 1000)
+
 -t, --timeout: Connection timeout in seconds (default: 0.5)
+
 -b, --batch-size: Number of ports to process per batch (default: 2048)
+
 -o, --output: Save open port results to a JSON file
+
 
 Examples
 ```
