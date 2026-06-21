@@ -45,16 +45,16 @@ Features
 
 Options
 
-Flag,Description
-"-f, --filter","Filter rows using exact matches (e.g., status=up and role=web)."
-"-s, --search",Free-text search across all fields.
-"-o, --sort","Sort by field. Prefix with - for descending (e.g., -cpu)."
-"-c, --columns",Show only specific columns (comma-separated).
---stats,Show only summary statistics (hides the main table).
---markdown,Output filtered results as a Markdown table.
---json,Output filtered results as raw JSON.
-"-e, --export",Export filtered results to a CSV file.
-
+| Flag             | Description |
+|------------------|-------------|
+| `-c, --columns`  | Show only specific columns (comma-separated). |
+| `-e, --export`   | Export filtered results to a CSV file. |
+| `-f, --filter`   | Filter rows using exact matches (e.g., `status=up and role=web`). |
+| `--json`         | Output filtered results as raw JSON. |
+| `--markdown`     | Output filtered results as a Markdown table. |
+| `-o, --sort`     | Sort by field. Prefix with `-` for descending (e.g., `-cpu`). |
+| `-s, --search`   | Free-text search across all fields. |
+| `--stats`        | Show only summary statistics (hides the main table). |
 
 Usage
 
