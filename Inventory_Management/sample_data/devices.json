@@ -1,1 +1,34 @@
-
+[
+  {
+    "id": 101,
+    "hostname": "core-sw-01",
+    "ip": "192.168.1.1",
+    "model": "Cisco 9300",
+    "site": "tehran",
+    "status": "up"
+  },
+  {
+    "id": 102,
+    "hostname": "edge-rt-01",
+    "ip": "192.168.1.2",
+    "model": "MikroTik CCR",
+    "site": "tehran",
+    "status": "down"
+  },
+  {
+    "id": 103,
+    "hostname": "core-sw-02",
+    "ip": "192.168.2.1",
+    "model": "Cisco 9300",
+    "site": "shiraz",
+    "status": "up"
+  },
+  {
+    "id": 104,
+    "hostname": "dist-sw-01",
+    "ip": "192.168.2.2",
+    "model": "HP Aruba",
+    "site": "shiraz",
+    "status": "error"
+  }
+]
