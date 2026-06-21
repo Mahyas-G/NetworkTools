@@ -1,0 +1,30 @@
+[
+  {
+    "device_id": "iot-temp-01",
+    "type": "thermometer",
+    "location": "Warehouse A",
+    "battery_pct": 85,
+    "state": "online"
+  },
+  {
+    "device_id": "iot-temp-02",
+    "type": "thermometer",
+    "location": "Warehouse B",
+    "battery_pct": 12,
+    "state": "offline"
+  },
+  {
+    "device_id": "iot-door-01",
+    "type": "contact_sensor",
+    "location": "Main Gate",
+    "battery_pct": 99,
+    "state": "online"
+  },
+  {
+    "device_id": "iot-cam-01",
+    "type": "camera",
+    "location": "Perimeter",
+    "battery_pct": "N/A",
+    "state": "disabled"
+  }
+]
