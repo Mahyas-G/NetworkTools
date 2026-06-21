@@ -38,14 +38,14 @@ All background execution errors and exceptions are captured in scanner_debug.log
 
 A smart, plugin-less command-line utility to view, filter, and manage JSON inventory files. It automatically detects nested structures, flattens arrays, and identifies status fields across different device types (Cisco, MikroTik, Servers, IoT, etc.) without requiring specific plugins.
 
-Features
+Features:
 - **Auto-Detection:** Automatically normalizes JSON structures and highlights status fields (`status`, `state`, `health`, etc.).
 - **Advanced Filtering:** Chain multiple exact-match conditions using `and` or use free-text search.
 - **Export & Formatting:** Output data as plain text tables, Markdown, JSON, or export directly to CSV.
 - **Summary Statistics:** Generate visual progress bars and status counts.
 
 
-Options
+Options:
 
 | Flag             | Description |
 |------------------|-------------|
@@ -58,13 +58,14 @@ Options
 | `-s, --search`   | Free-text search across all fields. |
 | `--stats`        | Show only summary statistics (hides the main table). |
 
-Usage
+
+Usage:
 
 ```bash
 python Inventory_Management.py <file.json> [options]
 ```
 
-Examples
+Examples:
 1. Basic View
 Load and display an inventory file as a formatted table:
 
@@ -89,5 +90,7 @@ Perfect for documentation or piping into other tools:
 
 ```bash
 python Inventory_Management.py sample_data/devices.json --markdown
+```
+```bash
 python Inventory_Management.py sample_data/servers.json --json
 ```
