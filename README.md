@@ -1,6 +1,8 @@
 # NetworkTools
 
-## Port_Scanner
+in Progress...
+
+## 3) Port_Scanner
 
 Options:
 
@@ -32,7 +34,7 @@ Logging:
 All background execution errors and exceptions are captured in scanner_debug.log to maintain a clean terminal user interface.
 
 ---
- ## Inventory_Management (CLI)
+ ## 4) Inventory_Management (CLI)
 
 A smart, plugin-less command-line utility to view, filter, and manage JSON inventory files. It automatically detects nested structures, flattens arrays, and identifies status fields across different device types (Cisco, MikroTik, Servers, IoT, etc.) without requiring specific plugins.
 
@@ -73,7 +75,7 @@ python Inventory_Management.py sample_data/devices.json
 3. Search & Sort
 Free-text search across all fields and sort descending by a specific column:
 ```bash
-python Inventory_Management.py sample_data/servers.json --search "prod" --sort -uptime_days
+python Inventory_Management.py sample_data/servers.json --search "prod" --sort=-uptime_days
 ```
 
 4. Summary Statistics
