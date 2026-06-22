@@ -2,6 +2,8 @@
 
 in Progress...
 
+---
+
 ## 1) IP_Calculator
 
 An interactive command-line utility for calculating comprehensive IPv4 subnet details. By providing an IP address with its CIDR notation, it quickly generates network boundaries, host ranges, and binary representations.
@@ -46,6 +48,8 @@ Enter IP/CIDR (or 'q' to quit): 192.168.1.50/24
   Wildcard Mask          00000000.00000000.00000000.11111111
 ==================================================
 ```
+
+---
 
 ## 2) Ping_Monitor
 
@@ -95,7 +99,20 @@ Example Output (Outside Iran):
   2015-01-15 09:25:32
 
   14 addresses detected | workers=50 | timeout=2s | retry=2
-  1.1.1.1               ▲  UP  (15.2 ms)  cloudflare.com        ▲  UP  (16.7 ms)  dns.google            ▲  UP  (21.9 ms)  9.9.9.9               ▲  UP  (22.8 ms)  8.8.8.8               ▲  UP  (24.1 ms)  google.com            ▲  UP  (25.4 ms)  [www.youtube.com](https://www.youtube.com)       ▲  UP  (30.2 ms)  youtube.com           ▲  UP  (30.5 ms)  github.com            ▲  UP  (45.8 ms)  api.github.com        ▲  UP  (46.1 ms)  telegram.org          ▲  UP  (65.3 ms)  web.telegram.org      ▲  UP  (66.0 ms)  185.60.219.35         ▲  UP  (110.5 ms)  185.60.216.35         ▼  DOWN  [retry×2]
+  1.1.1.1               ▲  UP  (15.2 ms)
+  cloudflare.com        ▲  UP  (16.7 ms)
+  dns.google            ▲  UP  (21.9 ms)
+  9.9.9.9               ▲  UP  (22.8 ms)
+  8.8.8.8               ▲  UP  (24.1 ms)
+  google.com            ▲  UP  (25.4 ms)
+  www.youtube.com       ▲  UP  (30.2 ms)
+  youtube.com           ▲  UP  (30.5 ms)
+  github.com            ▲  UP  (45.8 ms)
+  api.github.com        ▲  UP  (46.1 ms)
+  telegram.org          ▲  UP  (65.3 ms)
+  web.telegram.org      ▲  UP  (66.0 ms)
+  185.60.219.35         ▲  UP  (110.5 ms)
+  185.60.216.35         ▼  DOWN  [retry×2]
 
 ─────────────────────────────────────────────
   Summary:
@@ -108,7 +125,7 @@ Example Output (Outside Iran):
   Log saved to 'ping_monitor.log'.
 ```
 
-
+---
 
 ## 3) Port_Scanner
 
@@ -142,6 +159,7 @@ Logging:
 All background execution errors and exceptions are captured in scanner_debug.log to maintain a clean terminal user interface.
 
 ---
+
  ## 4) Inventory_Management (CLI)
 
 A smart, plugin-less command-line utility to view, filter, and manage JSON inventory files. It automatically detects nested structures, flattens arrays, and identifies status fields across different device types (Cisco, MikroTik, Servers, IoT, etc.) without requiring specific plugins.
