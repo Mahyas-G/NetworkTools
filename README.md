@@ -22,7 +22,7 @@ python IP_Calculator.py
 
 Example Interaction:
 
-```plaintext
+```text
 Enter IP/CIDR (or 'q' to quit): 192.168.1.50/24
 
 ==================================================
@@ -48,6 +48,67 @@ Enter IP/CIDR (or 'q' to quit): 192.168.1.50/24
 ```
 
 ## 2) Ping_Monitor
+
+A fast, concurrent ping monitoring tool designed to check the availability and latency of multiple IP addresses or domains simultaneously. It provides real-time, color-coded terminal feedback alongside persistent logging.
+
+Features:
+- **High Concurrency:** Utilizes thread pooling to ping multiple hosts in parallel, significantly reducing execution time.
+- **Smart Latency Tracking:** Extracts response times and color-codes terminal output based on latency health (Green < 50ms, Yellow < 150ms, Red for high latency).
+- **Auto-Retry Mechanism:** Automatically retries failed pings to prevent false negatives before marking a host as DOWN.
+- **Cross-Platform & Encoding Safe:** Automatically adjusts native ping commands for Windows or Unix-like systems. Reading targets from a JSON configuration file ensures stable character encoding and prevents reading errors across different environments.
+- **Logging & Summary:** Generates a statistical summary at the end of the run and logs all status changes to `ping_monitor.log`.
+
+Configuration:
+
+Create a file named `ips.json` in the same directory as the script containing your list of target IPs or domains:
+
+```json
+[
+    "8.8.8.8",
+    "1.1.1.1",
+    "github.com",
+    "api.github.com",
+    "youtube.com",
+    "[www.youtube.com](https://www.youtube.com)",
+    "telegram.org",
+    "web.telegram.org",
+    "9.9.9.9",
+    "185.60.216.35",
+    "185.60.219.35",
+    "google.com",
+    "cloudflare.com",
+    "dns.google"
+]
+```
+
+Usage:
+
+```bash
+python Ping_Monitor.py
+```
+
+Example Output (Outside Iran):
+
+```text
+
+  Ping Monitor
+  2015-01-15 09:25:32
+
+  14 addresses detected | workers=50 | timeout=2s | retry=2
+  1.1.1.1               ▲  UP  (15.2 ms)  cloudflare.com        ▲  UP  (16.7 ms)  dns.google            ▲  UP  (21.9 ms)  9.9.9.9               ▲  UP  (22.8 ms)  8.8.8.8               ▲  UP  (24.1 ms)  google.com            ▲  UP  (25.4 ms)  [www.youtube.com](https://www.youtube.com)       ▲  UP  (30.2 ms)  youtube.com           ▲  UP  (30.5 ms)  github.com            ▲  UP  (45.8 ms)  api.github.com        ▲  UP  (46.1 ms)  telegram.org          ▲  UP  (65.3 ms)  web.telegram.org      ▲  UP  (66.0 ms)  185.60.219.35         ▲  UP  (110.5 ms)  185.60.216.35         ▼  DOWN  [retry×2]
+
+─────────────────────────────────────────────
+  Summary:
+  Total:    14
+  UP:       13
+  DOWN:     1
+  Average latency: 40.0 ms
+─────────────────────────────────────────────
+
+  Log saved to 'ping_monitor.log'.
+```
+
+
 
 ## 3) Port_Scanner
 
