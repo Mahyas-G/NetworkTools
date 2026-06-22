@@ -73,7 +73,7 @@ Create a file named `ips.json` in the same directory as the script containing yo
     "github.com",
     "api.github.com",
     "youtube.com",
-    "[www.youtube.com](https://www.youtube.com)",
+    "www.youtube.com",
     "telegram.org",
     "web.telegram.org",
     "9.9.9.9",
