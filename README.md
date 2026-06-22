@@ -4,6 +4,49 @@ in Progress...
 
 ## 1) IP_Calculator
 
+An interactive command-line utility for calculating comprehensive IPv4 subnet details. By providing an IP address with its CIDR notation, it quickly generates network boundaries, host ranges, and binary representations.
+
+Features:
+- **Network Details:** Automatically calculates Network Address, Broadcast Address, Subnet Mask, and Wildcard Mask.
+- **Host Ranges:** Identifies the first and last usable hosts, plus total and usable host counts (with built-in support for `/31` point-to-point and `/32` host routes).
+- **IP Classification:** Determines the IP Class (A, B, C, D, E) and flags Private network ranges (RFC 1918).
+- **Binary Conversion:** Displays accurate binary representations for the Network, Subnet Mask, and Wildcard Mask.
+
+Usage:
+
+Simply run the script. It will open an interactive prompt where you can enter your IP/CIDR. Type `q` to quit.
+
+```bash
+python IP_Calculator.py
+```
+
+Example Interaction:
+
+```plaintext
+Enter IP/CIDR (or 'q' to quit): 192.168.1.50/24
+
+==================================================
+  IP Subnet Calculator
+==================================================
+  CIDR Notation          192.168.1.0/24
+  Network Address        192.168.1.0
+  Broadcast Address      192.168.1.255
+  Subnet Mask            255.255.255.0
+  Wildcard Mask          0.0.0.255
+  First Usable Host      192.168.1.1
+  Last Usable Host       192.168.1.254
+  Total Addresses        256
+  Usable Hosts           254
+  IP Class               C
+  Private Range          Yes (RFC 1918)
+--------------------------------------------------
+  Binary Representation
+  Network                11000000.10101000.00000001.00000000
+  Subnet Mask            11111111.11111111.11111111.00000000
+  Wildcard Mask          00000000.00000000.00000000.11111111
+==================================================
+```
+
 ## 2) Ping_Monitor
 
 ## 3) Port_Scanner
