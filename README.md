@@ -2,6 +2,10 @@
 
 in Progress...
 
+## 1) IP_Calculator
+
+## 2) Ping_Monitor
+
 ## 3) Port_Scanner
 
 Options:
