@@ -160,7 +160,7 @@ All background execution errors and exceptions are captured in scanner_debug.log
 
 ---
 
- ## 4) Inventory_Management (CLI)
+ ## 4) Inventory_Manager (CLI)
 
 A smart, plugin-less command-line utility to view, filter, and manage JSON inventory files. It automatically detects nested structures, flattens arrays, and identifies status fields across different device types (Cisco, MikroTik, Servers, IoT, etc.) without requiring specific plugins.
 
@@ -188,7 +188,7 @@ Options:
 Usage:
 
 ```bash
-python Inventory_Management.py <file.json> [options]
+python Inventory_Manager.py <file.json> [options]
 ```
 
 Examples:
@@ -196,27 +196,27 @@ Examples:
 Load and display an inventory file as a formatted table:
 
 ```bash
-python Inventory_Management.py sample_data/devices.json
+python Inventory_Manager.py sample_data/devices.json
 ```
 
 3. Search & Sort
 Free-text search across all fields and sort descending by a specific column:
 ```bash
-python Inventory_Management.py sample_data/servers.json --search "prod" --sort=-uptime_days
+python Inventory_Manager.py sample_data/servers.json --search "prod" --sort=-uptime_days
 ```
 
 4. Summary Statistics
 Skip the table and only display record counts and status distribution:
 ```bash
-python Inventory_Management.py sample_data/iot_devices.json --stats
+python Inventory_Manager.py sample_data/iot_devices.json --stats
 ```
 
 5. Markdown & JSON Output
 Perfect for documentation or piping into other tools:
 
 ```bash
-python Inventory_Management.py sample_data/devices.json --markdown
+python Inventory_Manager.py sample_data/devices.json --markdown
 ```
 ```bash
-python Inventory_Management.py sample_data/servers.json --json
+python Inventory_Manager.py sample_data/servers.json --json
 ```
