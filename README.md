@@ -160,7 +160,7 @@ All background execution errors and exceptions are captured in scanner_debug.log
 
 ---
 
- ## 4) Inventory_Manager (CLI)
+## 4) Inventory_Manager (CLI)
 
 A smart, plugin-less command-line utility to view, filter, and manage JSON inventory files. It automatically detects nested structures, flattens arrays, and identifies status fields across different device types (Cisco, MikroTik, Servers, IoT, etc.) without requiring specific plugins.
 
@@ -220,3 +220,8 @@ python Inventory_Manager.py sample_data/devices.json --markdown
 ```bash
 python Inventory_Manager.py sample_data/servers.json --json
 ```
+
+---
+
+## 5) Backup_Config_Generator
+
