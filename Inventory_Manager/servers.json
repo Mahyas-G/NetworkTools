@@ -1,0 +1,34 @@
+{
+  "inventory": [
+    {
+      "hostname": "web-prod-1",
+      "role": "web",
+      "hardware": {
+        "cpu": 16,
+        "ram": "64GB"
+      },
+      "health": "good",
+      "uptime_days": 120
+    },
+    {
+      "hostname": "db-prod-1",
+      "role": "database",
+      "hardware": {
+        "cpu": 32,
+        "ram": "128GB"
+      },
+      "health": "failed",
+      "uptime_days": 0
+    },
+    {
+      "hostname": "cache-1",
+      "role": "redis",
+      "hardware": {
+        "cpu": 8,
+        "ram": "32GB"
+      },
+      "health": "good",
+      "uptime_days": 45
+    }
+  ]
+}
